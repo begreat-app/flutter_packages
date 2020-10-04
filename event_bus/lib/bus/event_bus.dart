@@ -63,5 +63,13 @@ class _EventBusImpl<T> implements EventBus<T> {
   }
 
   ///
-  _onEventReceived(Event<T> event) {}
+  _onEventReceived(Event<T> event) {
+    final T data = event?.unHandledData;
+
+    if (data != null) {
+      _receivers.forEach((element) {
+        element.call(data);
+      });
+    }
+  }
 }
