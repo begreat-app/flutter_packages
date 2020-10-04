@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 abstract class ILifcycleAware {
   void onInitialize();
 
-  void dipose();
+  void onDispose();
 }
 
 ///
@@ -24,7 +24,7 @@ mixin LifecleOwnerMixin<T extends StatefulWidget> on State<T> {
   @override
   void dispose() {
     _list?.forEach((element) {
-      element?.dipose();
+      element?.onDispose();
     });
     super.dispose();
   }
