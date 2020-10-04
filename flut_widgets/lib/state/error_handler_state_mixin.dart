@@ -21,10 +21,7 @@ mixin ErrorHandlerStateMixin<T extends StatefulWidget> on DialogStateMixin<T> {
 
   StreamSubscription _subscription;
 
-  @override
-  void initState() {
-    super.initState();
-
+  void initErrorHandlerStateMixin() {
     _subscription = errorProvider.errorBus.event.listen(_onErrorReceived);
   }
 

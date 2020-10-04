@@ -7,14 +7,12 @@ abstract class ILifcycleAware {
 }
 
 ///
-mixin LifecleOwnerMixin<T extends StatefulWidget> on State<T> {
+mixin LifecleOwnerStateMixin<T extends StatefulWidget> on State<T> {
   List<ILifcycleAware> _list;
 
   List<ILifcycleAware> onInitLifecycleAwares();
 
-  @override
-  void initState() {
-    super.initState();
+  void initLifecleOwnerStateMixin() {
     _list = onInitLifecycleAwares();
     _list?.forEach((element) {
       element?.onInitialize();
