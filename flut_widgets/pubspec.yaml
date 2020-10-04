@@ -15,7 +15,6 @@ dependencies:
     git: 
       url: https://github.com/begreat-app/flutter_packages.git
       path: event_bus
-      version: "0.0.2"
 
 dev_dependencies:
   flutter_test:

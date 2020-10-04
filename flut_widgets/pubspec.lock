@@ -48,10 +48,10 @@ packages:
     description:
       path: event_bus
       ref: HEAD
-      resolved-ref: "0aaaa445b1dcb7bfe730c0eab787881e2867ec07"
+      resolved-ref: "2a31169ca51b99a05df1e2bf901a929d441b642f"
       url: "https://github.com/begreat-app/flutter_packages.git"
     source: git
-    version: "0.0.2"
+    version: "0.0.3"
   fake_async:
     dependency: transitive
     description:

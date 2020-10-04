@@ -1,3 +1,5 @@
 library flut_widgets;
 
-export 'dialogs/dialog_state_mixin.dart';
+export 'dialogs/index.dart';
+export 'error/index.dart';
+export 'state/index.dart';
