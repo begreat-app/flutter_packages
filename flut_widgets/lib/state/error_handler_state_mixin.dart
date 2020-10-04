@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import '../error/index.dart';
+import '../mixin_provider/index.dart';
 import '../dialogs/index.dart';
 
 class DisplayDialogModel {
