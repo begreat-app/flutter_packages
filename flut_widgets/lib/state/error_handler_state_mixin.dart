@@ -12,10 +12,8 @@ class DisplayDialogModel {
   DisplayDialogModel({this.title, this.content, this.positiveBtnText});
 }
 
-mixin _ErrorDialogMixin<T extends StatefulWidget> on DialogStateMixin<T> {}
-
 ///
-mixin ErrorHandlerStateMixin<T extends StatefulWidget> on _ErrorDialogMixin<T> {
+mixin ErrorHandlerStateMixin<T extends StatefulWidget> on DialogStateMixin<T> {
   ///
   ErrorProviderMixin get errorProvider;
 
