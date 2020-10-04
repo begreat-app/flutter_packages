@@ -66,13 +66,13 @@ mixin DialogStateMixin<T extends StatefulWidget> on State<T> {
     return showDialog(
         context: context,
         builder: (context) {
-          return _buildMaterialDialog<bool>(
+          return _buildMaterialDialog<T>(
             context,
             title: title,
             content: content,
-            negativeResult: false,
-            positiveResult: false,
-            hasNegativeBtn: true,
+            negativeResult: negativeResult,
+            positiveResult: positiveResult,
+            hasNegativeBtn: hasNegativeBtn ?? true,
             positiveBtn: positiveText,
             negativeBtn: negativeText,
           );
