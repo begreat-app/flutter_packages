@@ -20,14 +20,12 @@ class Event<T> {
   }
 }
 
-typedef OnEventDataReceiver<T> = void Function(T data);
-
 abstract class EventBus<T> {
   factory EventBus() => _EventBusImpl<T>();
 
   void add(T data);
 
-  void addReceiver(OnEventDataReceiver<T> receiver);
+  Stream<T> get event;
 
   void dispose();
 }
@@ -35,13 +33,21 @@ abstract class EventBus<T> {
 ///
 class _EventBusImpl<T> implements EventBus<T> {
   //
-  _EventBusImpl() : this._subject = BehaviorSubject.seeded(null) {
-    _subscription = _subject.listen(_onEventReceived);
+  factory _EventBusImpl() {
+    // ignore: close_sinks
+    BehaviorSubject<Event<T>> subject = BehaviorSubject();
+    return _EventBusImpl._(
+      subject,
+      event: subject.map((event) => event?.unHandledData),
+    );
   }
 
+  _EventBusImpl._(this._subject, {this.event});
+
   final BehaviorSubject<Event<T>> _subject;
-  StreamSubscription _subscription;
-  final List<OnEventDataReceiver<T>> _receivers = [];
+
+  @override
+  final Stream<T> event;
 
   @override
   void add(T data) {
@@ -49,27 +55,7 @@ class _EventBusImpl<T> implements EventBus<T> {
   }
 
   @override
-  void addReceiver(OnEventDataReceiver<T> receiver) {
-    if (receiver != null) {
-      _receivers.add(receiver);
-    }
-  }
-
-  @override
   void dispose() {
-    _receivers.clear();
-    _subscription?.cancel();
     _subject.close();
-  }
-
-  ///
-  _onEventReceived(Event<T> event) {
-    final T data = event?.unHandledData;
-
-    if (data != null) {
-      _receivers.forEach((element) {
-        element.call(data);
-      });
-    }
   }
 }
